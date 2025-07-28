@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+    <title>Portfolio Website</title>
+    <script src="main.js" defer></script>
+  </head>
+  <body>
+    <header class="home">
+      <div class="home-content">
+        <img src="./img/Logo.jpg" alt="Logo Iterum" />
+        <h1><span>Iterum</span></h1>
+        <h3 class="typing-text" aria-live="polite"><span>!</span></h3>
+      </div>
+      <div class="commissions">
+        <a href="#commissions" class="active"
+          >Commissions open<span class="dot-1">●</span></a
+        >
+      </div>
+    </header>
+    <section class="apresentation">
+      <div class="apresentation-content">
+        <h1>Welcome to My Portfolio</h1>
+        <p>
+          Explore my work, learn about my services, and discover how I can help
+          you with your next project.
+        </p>
+      </div>
+    </section>
+
+    <!-- <section class="carousel-section">
+      <div class="carousel-div">
+        <div class="carousel">
+          <img src="./girassol.jpeg" alt="roblox avatar" />
+          <img src="./girassol.jpeg" alt="roblox avatar" />
+          <img src="./girassol.jpeg" alt="roblox avatar" />
+          <img src="./girassol.jpeg" alt="roblox avatar" />
+          <img src="./girassol.jpeg" alt="roblox avatar" />
+          <img src="./girassol.jpeg" alt="roblox avatar" />
+          <img src="./girassol.jpeg" alt="roblox avatar" />
+          <img src="./girassol.jpeg" alt="roblox avatar" />
+          <img src="./girassol.jpeg" alt="roblox avatar" />
+          <img src="./girassol.jpeg" alt="roblox avatar" />
+        </div>
+      </div>
+    </section> -->
+
+    <section class="card-hero">
+      <h1>My Services</h1>
+      <div class="toggle">
+        <button class="active cards" id="icon-btn">Icon</button>
+        <button id="thumbnail-btn" class="cards">Thumbnail</button>
+      </div>
+
+      <div class="card-container">
+        <div id="icon" class="card active">
+          <div class="card-header">
+            <div class="left">01<span class="dot">•</span></div>
+            <div class="right">Done in <b>1 week</b></div>
+          </div>
+          <div class="card-content">
+            <div class="left-section">
+              <div class="title">Icons</div>
+              <div class="subtitle">Ícons for your projects.</div>
+            </div>
+            <div class="right-section">$50<span>/project</span></div>
+          </div>
+          <a href="#" class="button">Get Started →</a>
+          <div class="benefits-box">
+            <ul>
+              <li>✔ High Quality</li>
+              <li>✔ Unlimited minor revisions</li>
+              <li>✔ Export in JPG, PNG</li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="thumbnail" class="card">
+          <div class="card-header">
+            <div class="left">02 <span class="dot">•</span></div>
+            <div class="right">Done in <b>3 days</b></div>
+          </div>
+          <div class="card-content">
+            <div class="left-section">
+              <div class="title">Thumbnail</div>
+              <div class="subtitle">Miniaturas for vídeos and projects.</div>
+            </div>
+            <div class="right-section">$80<span>/project</span></div>
+          </div>
+          <a href="#" class="button">Get Started →</a>
+          <div class="benefits-box">
+            <ul>
+              <li>✔ High Quality</li>
+              <li>✔ Unlimited minor revisions</li>
+              <li>✔ Export in JPG, PNG</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="works">
+      <h2>My Works</h2>
+      <p>Currently open for commissions!</p>
+      <div class="socials">
+        <a href="#" class="work-item">Twitter</a>
+        <a href="#" class="work-item">Instagram</a>
+        <a href="#" class="work-item">Discord</a>
+      </div>
+    </section>
+    <section class="timeline">
+      <div class="timeline-line"></div>
+
+      <div class="timeline-item left">
+        <div class="dot-2"></div>
+        <div class="content">
+          <h2>About me</h2>
+          <p>
+            Olá, meu nome é <strong>Iterum</strong>, sou um artista digital
+            especializado em criar ícones e miniaturas para projetos diversos.
+            Com uma paixão por design e atenção aos detalhes, estou aqui para
+            transformar suas ideias em realidade visual.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item right">
+        <div class="dot-2"></div>
+        <div class="content">
+          <h2>Submit Your Request</h2>
+          <p>
+            Para iniciar, você pode enviar suas requisições através do nosso
+            portal. Basta clicar no botão abaixo e preencher o formulário com os
+            detalhes do seu projeto.
+          </p>
+          <a href="#commissions" class="button">Submit Request</a>
+        </div>
+      </div>
+
+      <div class="timeline-item left">
+        <div class="dot-2"></div>
+        <div class="content">
+          <h2>Review & Feedback</h2>
+          <p>Acompanhe o progresso e dê seu feedback.</p>
+          <a href="#commissions" class="button">Give Feedback</a>
+        </div>
+      </div>
+    </section>
+    <div class="cursor"></div>
+  </body>
+</html>
