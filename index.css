@@ -1,6 +1,4 @@
-/* 1. CONFIGURAÇÕES GLOBAIS E VARIÁVEIS */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
-
+/* CONFIGURAÇÕES GLOBAIS E VARIÁVEIS */
 :root {
   --cor-preto: #0d0d0d;
   --cor-cinza: #888;
@@ -8,7 +6,7 @@
   --cor-verde-glow: #07d100;
   --cor-fundo-card: #141414;
   --cor-borda: rgba(255, 255, 255, 0.1);
-  --transparente: rfga(0, 0, 0, 0);
+  --transparente: rgba(0, 0, 0, 0);
 }
 
 * {
@@ -18,15 +16,15 @@
 }
 
 html {
-  font-size: 62.5%; /* 1rem = 10px */
+  font-size: 62.5%;
   scroll-behavior: smooth;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* Internet Explorer and Edge */
-  overflow-y: scroll; /* Always show vertical scrollbar */
-  overscroll-behavior: contain; /* Prevents scroll chaining */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow-y: scroll;
+  overscroll-behavior: contain;
 }
 html::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, and Opera */
+  display: none;
 }
 
 body {
@@ -37,7 +35,7 @@ body {
   overflow-x: hidden;
 }
 
-/* 2. COMPONENTES REUTILIZÁVEIS */
+/* COMPONENTES REUTILIZÁVEIS */
 .btn {
   display: inline-block;
   padding: 1.2rem 2.8rem;
@@ -48,66 +46,44 @@ body {
   transition: transform 0.3s ease, background-color 0.3s ease;
   border: none;
   cursor: pointer;
-  position: relative; /* Necessário para o pseudo-elemento */
-  z-index: 1; /* Garante que o texto fique acima de qualquer pseudo-elemento */
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
 }
 .btn-primary {
   background-color: var(--transparente);
   color: var(--cor-cinza);
   border: 2px solid var(--cor-branco);
-  overflow: hidden; /* Essencial para conter a animação */
 }
 .btn-primary::before {
   content: "";
   position: absolute;
-  inset: 0; /* Cobre todo o botão */
+  inset: 0;
   background-color: var(--cor-branco);
-
-  /* --- NOVA TÉCNICA DE ANIMAÇÃO --- */
-  /* 1. Define o ponto de origem da transformação na borda direita */
   transform-origin: left;
-
-  /* 2. No estado inicial, achata o elemento horizontalmente até 0 */
   transform: scaleX(0);
-
-  /* 3. Define a transição suave para a propriedade 'transform' */
   transition: transform 0.4s ease-in-out;
-
-  z-index: -1; /* Coloca o fundo atrás do texto do botão */
+  z-index: -1;
 }
-/* Quando o mouse está sobre o botão... */
 .btn-primary:hover::before {
-  /* ...expande o fundo branco horizontalmente para cobrir todo o botão */
   transform: scaleX(1);
 }
 .btn-secondary {
   background-color: var(--transparente);
   color: var(--cor-cinza);
   border: 2px solid var(--cor-branco);
-  overflow: hidden; /* Essencial para conter a animação */
 }
-/* O pseudo-elemento que será o fundo branco animado */
 .btn-secondary::before {
   content: "";
   position: absolute;
-  inset: 0; /* Cobre todo o botão */
+  inset: 0;
   background-color: var(--cor-branco);
-
-  /* --- NOVA TÉCNICA DE ANIMAÇÃO --- */
-  /* 1. Define o ponto de origem da transformação na borda esquerda */
   transform-origin: left;
-
-  /* 2. No estado inicial, achata o elemento horizontalmente até 0 */
   transform: scaleX(0);
-
-  /* 3. Define a transição suave para a propriedade 'transform' */
   transition: transform 0.4s ease-in-out;
-
-  z-index: -1; /* Coloca o fundo atrás do texto do botão */
+  z-index: -1;
 }
-/* Quando o mouse está sobre o botão... */
 .btn-secondary:hover::before {
-  /* ...expande o fundo branco horizontalmente para cobrir todo o botão */
   transform: scaleX(1);
 }
 .btn:hover {
@@ -132,43 +108,38 @@ body {
   margin-bottom: 4rem;
   margin-right: 60px;
   font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 .section-title span {
   font-size: 1.7rem;
   font-weight: 600;
   color: var(--cor-branco);
   vertical-align: middle;
-  cursor: help; /* Muda o cursor para indicar ajuda */
-  position: relative; /* Essencial para posicionar o tooltip */
-  display: flex;
-  flex-direction: column; /* Empilha os itens verticalmente */
-  align-items: center; /* Centraliza os itens (já que o título era centralizado) */
-  gap: 0.5rem; /* Adiciona um pequeno espaço entre o título e o span */
-  line-height: 1.2; /* Ajusta a altura da linha para um empilhamento mais justo */
+  cursor: help;
+  position: relative;
+  line-height: 1.2;
 }
-/* O Tooltip (escondido por padrão) */
 .section-title span::after {
-  content: "Constantly learning and improving!"; /* O texto que aparecerá no tooltip */
+  content: "Constantly learning and improving!";
   position: absolute;
-  top: 80%; /* Posiciona o tooltip abaixo do span */
+  top: 80%;
   left: 50%;
-  transform: translateX(-50%); /* Centraliza o tooltip */
-
-  background-color: var(--cor-vermelho);
+  transform: translateX(-50%);
+  background-color: #000;
   color: var(--cor-branco);
   padding: 0.8rem 1.2rem;
   border-radius: 0.5rem;
   font-size: 1.4rem;
   font-weight: 500;
-  white-space: nowrap; /* Impede que o texto quebre a linha */
-
-  opacity: 0; /* Esconde o tooltip */
+  white-space: nowrap;
+  opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease;
   z-index: 10;
 }
-
-/* Mostra o Tooltip no hover */
 .section-title span:hover::after {
   opacity: 1;
   visibility: visible;
@@ -181,24 +152,18 @@ body {
   margin: 0 auto 6rem auto;
 }
 
-/* 3. ESTILOS DAS SEÇÕES */
-
 /* Header */
 .logo {
   font-size: 2.8rem;
   font-weight: 700;
-  display: flex; /* Adicionado para alinhar ícone e texto */
-  align-items: center; /* Adicionado para alinhar ícone e texto */
+  display: flex;
+  align-items: center;
 }
 .logo-icon {
-  height: 28px; /* Altura correspondente à fonte */
+  height: 28px;
   margin-right: 1.2rem;
-  stroke: var(--cor-branco); /* Cor da borda do SVG */
+  stroke: var(--cor-branco);
 }
-.logo span {
-  color: var(--cor-branco);
-}
-/* ... */
 .main-header {
   position: fixed;
   top: 0;
@@ -218,7 +183,7 @@ body {
   font-size: 1.6rem;
   margin-left: 3rem;
   position: relative;
-  transition: color 0.3s ease-in-out, transform 0.5s ease-in-out; /* Adicionada transição de cor */
+  transition: color 0.3s ease-in-out, transform 0.5s ease-in-out;
 }
 .main-nav a:not(.btn)::after {
   content: "";
@@ -233,15 +198,12 @@ body {
 .main-nav a:not(.btn):hover::after {
   width: 100%;
 }
-
 .main-nav a.nav-active:not(.btn) {
-  color: var(--cor-branco); /* Garante que a cor permaneça branca */
+  color: var(--cor-branco);
 }
 .main-nav a.nav-active:not(.btn)::after {
   width: 100%;
 }
-
-/* Para o link estilizado como botão, inverte as cores para destaque */
 .status {
   display: flex;
   align-items: center;
@@ -258,18 +220,16 @@ body {
   animation: blink 1.5s infinite;
 }
 
-/* Seção Hero */
+/* Hero Section */
 .hero-section {
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9)),
-    url("/Portfólio/img/Iterum.png") no-repeat center center/cover;
 }
 .hero-content h1 {
-  font-size: clamp(4rem, 8vw, 8rem); /* Fonte responsiva */
+  font-size: clamp(4rem, 8vw, 8rem);
   font-weight: 700;
 }
 .typing-text {
@@ -293,24 +253,17 @@ body {
   animation: words 12s infinite steps(1);
 }
 
-/* Seção Serviços */
+/* Services Section */
 .services-section {
   position: relative;
   padding: 12rem 0;
-  /* Fundo escuro com um brilho radial para dar profundidade ao efeito de vidro */
   background-color: #101010;
-  background-image: radial-gradient(
-    circle at top,
-    rgba(119, 119, 119, 0.1) 0%,
-    transparent 40%
-  );
 }
-
 .toggle-buttons {
   cursor: pointer;
   display: flex;
   justify-content: center;
-  gap: 4rem; /* Espaço entre os botões */
+  gap: 4rem;
   margin-bottom: 4rem;
 }
 .toggle-btn {
@@ -340,19 +293,16 @@ body {
   position: relative;
   max-width: 500px;
   margin: 0 auto;
-  /* A altura agora será automática para acomodar o novo conteúdo */
   min-height: 520px;
 }
 .card {
-  background-color: rgba(26, 26, 26, 0.2); /* Fundo semi-transparente */
-  backdrop-filter: blur(20px); /* O desfoque do fundo */
-  -webkit-backdrop-filter: blur(20px); /* Prefixo para Safari */
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
-
+  background-color: rgba(26, 26, 26, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
-
   position: absolute;
   opacity: 0;
   transform: translateY(20px);
@@ -382,15 +332,13 @@ body {
 .card-header span {
   font-size: 1.3rem;
   color: var(--cor-cinza);
-  white-space: nowrap; /* Impede que o texto quebre a linha */
+  white-space: nowrap;
 }
-
 .card-price-group {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem; /* Espaço entre o preço em $ e em Robux */
+  gap: 0.5rem;
 }
-
 .card-price {
   font-size: 3.2rem;
   font-weight: 700;
@@ -405,11 +353,10 @@ body {
   color: var(--cor-cinza);
 }
 .robux-icon {
-  /* Seu ícone do Robux */
   width: 2.8rem;
   height: 2.8rem;
   margin-right: 0.8rem;
-  filter: invert(1); /* Inverte as cores do ícone para branco */
+  filter: invert(1);
 }
 .card-description {
   font-size: 1.5rem;
@@ -434,15 +381,12 @@ body {
 }
 .card-benefits li::before {
   content: "•";
-  color: var(--cor-branco); /* Usando a cor de destaque verde */
+  color: var(--cor-branco);
 }
-
 .card-btn {
-  /* Estilo "Ghost Button" */
   background-color: transparent;
   border: 1px solid var(--cor-branco);
   color: var(--cor-cinza);
-
   border-radius: 5rem;
   padding: 1.2rem 2.8rem;
   font-size: 1.6rem;
@@ -450,25 +394,20 @@ body {
   text-align: center;
   text-decoration: none;
   width: 100%;
-  margin-top: auto; /* Empurra o botão para o final do card */
+  margin-top: auto;
   transition: all 0.3s ease;
 }
-
 .card-btn:hover {
   background-color: var(--cor-branco);
   color: var(--cor-preto);
   border-color: var(--cor-branco);
 }
 
-/* --- SEÇÃO PORTFÓLIO ATUALIZADA PARA GALERIA HORIZONTAL --- */
-
-/* O "Wrapper" - a janela visível do carrossel */
+/* Portfolio Section - Carrossel corrigido */
 .portfolio-gallery-wrapper {
-  overflow: hidden; /* ESSENCIAL: Esconde tudo que está fora desta área */
+  overflow: hidden;
   width: 100%;
-  position: relative; /* Para a máscara de fade */
-
-  /* Efeito de fade nas laterais para uma entrada e saída suaves */
+  position: relative;
   -webkit-mask-image: linear-gradient(
     to right,
     transparent,
@@ -484,27 +423,17 @@ body {
     transparent
   );
 }
-
-/* O contêiner que se move */
 .portfolio-gallery {
-  display: flex; /* Alinha os itens lado a lado */
-  width: fit-content; /* Faz o contêiner ter a largura de seu conteúdo */
-  gap: 2rem;
-
-  /* APLICA A ANIMAÇÃO */
-  /* Duração de 40s. Aumente para um scroll mais lento, diminua para um mais rápido */
-  animation: auto-scroll 20s linear infinite;
+  display: flex;
+  width: max-content;
+  animation: auto-scroll 30s linear infinite;
 }
-
-/* Pausa a animação quando o mouse está sobre o carrossel */
 .portfolio-gallery-wrapper:hover .portfolio-gallery {
   animation-play-state: paused;
 }
-
-/* Os itens individuais do portfólio (semelhante a antes) */
 .portfolio-item {
   flex-shrink: 0;
-  width: 450px; /* Largura fixa para cada item */
+  width: 450px;
   aspect-ratio: 16 / 9;
   border-radius: 1rem;
   overflow: hidden;
@@ -512,21 +441,18 @@ body {
   background-size: cover;
   background-position: center;
   transition: transform 0.4s ease;
+  margin-right: 20px;
 }
-
-/* Definição da Animação de Scroll */
 @keyframes auto-scroll {
-  from {
+  0% {
     transform: translateX(0);
   }
-  to {
-    /* Move para a esquerda pela metade da largura total.
-           O JS garantirá que a metade da largura seja igual à largura do conteúdo original. */
-    transform: translateX(-50%);
+  100% {
+    transform: translateX(
+      calc(-450px * 5 - 20px * 5)
+    ); /* Move exatamente o comprimento dos 5 itens */
   }
 }
-
-/* A sobreposição com o texto (sem alterações) */
 .portfolio-item .overlay {
   position: absolute;
   inset: 0;
@@ -537,28 +463,23 @@ body {
   opacity: 0;
   transition: opacity 0.4s ease;
 }
-
 .portfolio-item:hover .overlay {
   opacity: 1;
 }
-
 .overlay span {
   font-size: 2rem;
   font-weight: 600;
   transform: translateY(20px);
   transition: transform 0.4s ease;
 }
-
 .portfolio-item:hover .overlay span {
   transform: translateY(0);
 }
 
-/* NOVA SEÇÃO: Socials */
-
+/* Socials Section */
 .socials-section {
-  background-color: var(--cor-preto); /* Garante o fundo preto para contraste */
+  background-color: var(--cor-preto);
 }
-
 .social-cards-container {
   display: flex;
   justify-content: center;
@@ -566,29 +487,25 @@ body {
   flex-wrap: wrap;
   margin-top: 6rem;
 }
-
-/* O CARD PRINCIPAL */
 .social-card {
-  background-color: #ffffff; /* Fundo branco puro */
-  color: var(--cor-preto); /* Cor do texto preta */
-  border-radius: 2rem; /* Bordas bem arredondadas */
+  background-color: #ffffff;
+  color: var(--cor-preto);
+  border-radius: 2rem;
   padding: 3rem;
   text-decoration: none;
   flex-grow: 1;
-  max-width: 350px; /* Largura máxima para cada card */
-  min-height: 200px; /* Altura mínima para dar espaço */
-  position: relative; /* ESSENCIAL para posicionar o botão do ícone */
-  display: flex; /* Para controlar o conteúdo interno se necessário */
+  max-width: 350px;
+  min-width: 300px;
+  min-height: 200px;
+  position: relative;
+  display: flex;
   flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .social-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Sombra sutil no hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
-
-/* TÍTULO DENTRO DO CARD */
 .social-card h3 {
   font-size: 2rem;
   font-weight: 600;
@@ -598,65 +515,29 @@ body {
   color: var(--cor-cinza);
   margin-top: 0.5rem;
 }
-/* O BOTÃO CIRCULAR DO ÍCONE */
 .card-icon-button {
-  width: 4rem; /* Tamanho do botão */
-  height: 4rem; /* Tamanho do botão */
-  background-color: var(--cor-preto); /* Cor de fundo verde */
-  border-radius: 50%; /* Faz o círculo perfeito */
-
-  /* Centraliza o SVG dentro do círculo */
+  width: 4rem;
+  height: 4rem;
+  background-color: var(--cor-preto);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* Posiciona no canto inferior direito */
   position: absolute;
   bottom: 2.5rem;
   right: 2.5rem;
-
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
-
 .card-icon-button img {
-  width: 2rem; /* Tamanho do ícone */
-  height: 2rem; /* Tamanho do ícone */
+  width: 2rem;
+  height: 2rem;
   filter: invert(1);
 }
-
-/* O ÍCONE SVG DENTRO DO BOTÃO */
-/* EFEITO DE HOVER: Muda a cor do botão para o vermelho de destaque */
 .social-card:hover .card-icon-button {
-  transform: translateY(-8px); /* Leve movimento para cima no hover */
-}
-/* Seção Contato */
-.contact-form {
-  max-width: 600px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-.contact-form input,
-.contact-form textarea {
-  background-color: var(--cor-fundo-card);
-  border: 1px solid var(--cor-borda);
-  border-radius: 1rem;
-  padding: 1.5rem;
-  font-size: 1.6rem;
-  color: var(--cor-branco);
-  font-family: "Poppins", sans-serif;
-}
-.contact-form input:focus,
-.contact-form textarea:focus {
-  outline: none;
-  border-color: var(--cor-branco);
-}
-.contact-form button {
-  align-self: flex-start;
+  transform: translateY(-8px);
 }
 
-/* Rodapé */
+/* Footer */
 .main-footer {
   padding: 4rem;
   text-align: center;
@@ -670,7 +551,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; /* Permite quebrar a linha em telas pequenas */
+  flex-wrap: wrap;
   gap: 1rem;
   max-width: 1100px;
   margin: 0 auto;
@@ -685,7 +566,7 @@ body {
   color: var(--cor-branco);
 }
 
-/* 4. ANIMAÇÕES E EFEITOS ESPECIAIS */
+/* ANIMAÇÕES E EFEITOS ESPECIAIS */
 .cursor {
   position: fixed;
   width: 10px;
@@ -701,19 +582,16 @@ body {
   width: 18px;
   height: 18px;
 }
-
 @keyframes blink {
   50% {
     opacity: 0.5;
   }
 }
-
 @keyframes typing-blink {
   50% {
     opacity: 0;
   }
 }
-
 @keyframes words {
   0%,
   15% {
@@ -736,7 +614,6 @@ body {
     content: "Vectors";
   }
 }
-
 @keyframes floatAnimation {
   0% {
     transform: translateY(0);
@@ -748,7 +625,6 @@ body {
     transform: translateY(0);
   }
 }
-
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
@@ -759,13 +635,92 @@ body {
   transform: translateY(0);
 }
 
-/* 5. RESPONSIVIDADE */
+/* Camada de elementos flutuantes */
+.floating-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.floating-element {
+  position: absolute;
+  opacity: 0;
+  filter: blur(1px);
+  transition: opacity 2s ease-in-out;
+  z-index: -1;
+}
+
+.floating-element.visible {
+  opacity: 0.4;
+}
+
+/* Estilos para os elementos flutuantes */
+.floating-element.shape-1 {
+  width: 80px;
+  height: 80px;
+  background: url("img/Discord.svg") center/contain no-repeat;
+}
+
+.floating-element.shape-2 {
+  width: 60px;
+  height: 60px;
+  background: url("img/Discord.svg") center/contain no-repeat;
+}
+
+.floating-element.shape-3 {
+  width: 70px;
+  height: 70px;
+  background: url("img/Discord.svg") center/contain no-repeat;
+}
+
+.floating-element.shape-4 {
+  width: 90px;
+  height: 30px;
+  background: url("img/Discord.svg") center/contain no-repeat;
+}
+
+.floating-element.shape-5 {
+  width: 100px;
+  height: 100px;
+  background: url("img/Discord.svg") center/contain no-repeat;
+}
+
+.floating-element.shape-6 {
+  width: 50px;
+  height: 80px;
+  background: url("img/Discord.svg") center/contain no-repeat;
+}
+
+/* RESPONSIVIDADE - Melhorias para mobile */
+@media (max-width: 1024px) {
+  .section-title {
+    font-size: 4.5rem;
+    margin-right: 0;
+  }
+  .toggle-buttons {
+    gap: 2rem;
+  }
+  .portfolio-item {
+    width: 350px;
+  }
+  @keyframes auto-scroll {
+    100% {
+      transform: translateX(calc(-350px * 5 - 20px * 5));
+    }
+  }
+}
+
 @media (max-width: 768px) {
   html {
     font-size: 55%;
   }
   .cursor {
-    display: none; /* Esconde o cursor personalizado em telas menores */
+    display: none;
   }
   .main-header {
     flex-direction: column;
@@ -773,23 +728,145 @@ body {
   }
   .main-nav {
     margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .main-nav a {
+    margin-left: 0;
+    font-size: 1.4rem;
   }
   .status {
-    display: none; /* Esconde status em telas menores */
+    display: none;
   }
   .section-title {
     font-size: 3.8rem;
+    margin-right: 0;
   }
-  .portfolio-grid {
-    grid-template-columns: 1fr;
+  .section-subtitle {
+    font-size: 1.6rem;
   }
-  main-footer {
-    padding: 2rem;
+  .toggle-buttons {
+    flex-direction: column;
+    gap: 1rem;
   }
-  footer-content {
-    flex-direction: column; /* Empilha os itens do rodapé */
+  .toggle-btn {
+    padding: 1rem 2rem;
+    font-size: 1.4rem;
+  }
+  .card-container {
+    max-width: 100%;
+    min-height: auto;
+  }
+  .card {
+    position: relative;
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+    margin-bottom: 2rem;
+  }
+  .card.active {
+    display: block;
+  }
+  .card:not(.active) {
+    display: none;
+  }
+  .portfolio-gallery-wrapper {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .portfolio-gallery {
+    flex-direction: column;
+    width: 100%;
+    animation: none;
+  }
+  .portfolio-item {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+  .social-cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .social-card {
+    max-width: 100%;
+  }
+  .footer-content {
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
+  }
+
+  /* Ajustes específicos para mobile */
+  .hero-section {
+    padding-top: 80px; /* Espaço para o header fixo */
+    text-align: center;
+  }
+
+  .hero-content h1 {
+    font-size: 3.5rem;
+    line-height: 1.2;
+  }
+
+  .typing-text {
+    font-size: 1.8rem;
+  }
+
+  .content-section {
+    padding: 8rem 0;
+  }
+
+  .section-container {
+    padding: 0 2rem;
+  }
+
+  .btn {
+    padding: 1rem 2rem;
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-container {
+    padding: 0 2rem;
+  }
+  .hero-content h1 {
+    font-size: 3rem;
+  }
+  .typing-text {
+    font-size: 1.8rem;
+  }
+  .btn {
+    padding: 1rem 2rem;
+    font-size: 1.4rem;
+  }
+  .card-header h3 {
+    font-size: 2rem;
+  }
+  .card-price {
+    font-size: 2.8rem;
+  }
+
+  /* Ajustes adicionais para telas muito pequenas */
+  .main-nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .main-nav a {
+    margin: 0.5rem 0;
+  }
+
+  .section-title {
+    font-size: 3.2rem;
+  }
+
+  .portfolio-item {
+    width: 100%;
+    margin-right: 0;
   }
 }
