@@ -1,83 +1,22 @@
-// Função para criar elementos flutuantes
-function createFloatingElements() {
-  const floatingBackground = document.getElementById("floatingBackground");
-  const numElements = 15; // Número de elementos flutuantes
-
-  for (let i = 0; i < numElements; i++) {
-    const element = document.createElement("div");
-    const randomShape = Math.floor(Math.random() * 6) + 1;
-    element.classList.add("floating-element", `shape-${randomShape}`);
-
-    // Posição inicial aleatória
-    const posX = Math.random() * 100;
-    const posY = Math.random() * 100;
-    element.style.left = `${posX}%`;
-    element.style.top = `${posY}%`;
-
-    // Tamanho aleatório
-    const sizeFactor = 0.7 + Math.random() * 0.6;
-    element.style.transform = `scale(${sizeFactor})`;
-
-    floatingBackground.appendChild(element);
-
-    // Iniciar animação para este elemento
-    animateFloatingElement(element);
-  }
-}
-
-// Função para animar os elementos flutuantes
-function animateFloatingElement(element) {
-  // Tempo aleatório para aparecer
-  const initialDelay = Math.random() * 5000;
-
-  setTimeout(() => {
-    showAndMoveElement(element);
-  }, initialDelay);
-}
-
-function showAndMoveElement(element) {
-  element.classList.add("visible");
-
-  // Mover o elemento
-  const moveDuration = 20000 + Math.random() * 20000; // 20-40 segundos
-  const newX = Math.random() * 100;
-  const newY = Math.random() * 100;
-
-  element.style.transition = `left ${moveDuration}ms linear, top ${moveDuration}ms linear, opacity 3s ease-in-out`;
-  element.style.left = `${newX}%`;
-  element.style.top = `${newY}%`;
-
-  // Depois de se mover, desaparecer e reiniciar
-  setTimeout(() => {
-    hideElementAndReset(element);
-  }, moveDuration);
-}
-
-function hideElementAndReset(element) {
-  element.classList.remove("visible");
-
-  setTimeout(() => {
-    repositionAndRestart(element);
-  }, 2000);
-}
-
-function repositionAndRestart(element) {
-  // Reposicionar e reiniciar animação
-  element.style.transition = "none";
-  const newStartX = Math.random() * 100;
-  const newStartY = Math.random() * 100;
-  element.style.left = `${newStartX}%`;
-  element.style.top = `${newStartY}%`;
-
-  // Pequeno delay antes de reiniciar
-  setTimeout(() => {
-    animateFloatingElement(element);
-  }, 1000);
-}
-
-// Evento que executa após o DOM carregar completamente.
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. LÓGICA DO CURSOR PERSONALIZADO
+  // Typing effect for hero section
+  const typingSpan = document.querySelector(".typing-text span");
+  const words = [
+    "Banners",
+    "Icons",
+    "Thumbnails",
+    "Anime Typography Logos",
+    "Vectors",
+  ];
+  let wordIndex = 0;
+  function showWord() {
+    typingSpan.textContent = words[wordIndex];
+    wordIndex = (wordIndex + 1) % words.length;
+  }
+  showWord();
+  setInterval(showWord, 2000);
+
+  // 1. Cursor personalizado
   const cursor = document.querySelector(".cursor");
   const interactiveElements = document.querySelectorAll(
     "a, button, .toggle-btn, .portfolio-item"
@@ -97,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   });
 
-  // 2. LÓGICA PARA TROCA DE CARDS DE SERVIÇOS
+  // 2. Troca de cards de serviços
   const toggleButtons = document.querySelectorAll(".toggle-btn");
   const cards = document.querySelectorAll(".card");
 
@@ -112,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 3. ANIMAÇÃO DE FADE-IN AO ROLAR A PÁGINA
+  // 3. Animação de fade-in ao rolar a página
   const fadeInElements = document.querySelectorAll(".fade-in");
 
   const observer = new IntersectionObserver(
@@ -132,8 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fadeInElements.forEach((element) => {
     observer.observe(element);
   });
-
-  // 4. ESTADO ATIVO NA NAVEGAÇÃO
+  // 4. Estado ativo na navegação
   const sections = document.querySelectorAll("main section[id]");
   const navLinks = document.querySelectorAll(".main-nav a");
 
@@ -160,13 +98,4 @@ document.addEventListener("DOMContentLoaded", () => {
   sections.forEach((section) => {
     navObserver.observe(section);
   });
-
-  // 5. CARROSSEL AUTOMÁTICO INFINITO NA GALERIA DE PORTFÓLIO
-  // Apenas em desktop - em mobile, a galeria é vertical
-  if (window.innerWidth > 768) {
-    const gallery = document.querySelector(".portfolio-gallery");
-    if (gallery) {
-      // Já duplicamos os itens no HTML para melhor performance
-    }
-  }
 });
