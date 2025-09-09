@@ -691,7 +691,7 @@ SOCIALS SECTION
   .portfolio-item {
     width: 350px;
   }
-  .card{
+  .card {
     max-height: 480px;
   }
   @keyframes auto-scroll {
@@ -751,7 +751,7 @@ SOCIALS SECTION
     margin-bottom: 2rem;
   }
   .card.active {
-    display: block;
+    display: flex;
   }
   .card:not(.active) {
     display: none;
@@ -773,6 +773,7 @@ SOCIALS SECTION
     aspect-ratio: 16 / 9;
     margin-right: 0;
     margin-bottom: 20px;
+    display: none;
   }
   .social-cards-container {
     flex-direction: column;
@@ -780,6 +781,9 @@ SOCIALS SECTION
   }
   .social-card {
     max-width: 100%;
+  }
+  .portfolio-item:nth-child(-n + 8) {
+    display: block;
   }
   .footer-content {
     flex-direction: column;
