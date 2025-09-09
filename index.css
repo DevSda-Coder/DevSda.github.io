@@ -433,9 +433,10 @@ body {
   font-weight: 600;
   text-align: center;
   width: 100%;
-  margin-top: auto;
+  margin-top: 25px;
   transition: all 0.3s;
 }
+
 .card-btn:hover {
   background-color: var(--cor-branca);
   color: var(--cor-preta);
@@ -690,6 +691,9 @@ SOCIALS SECTION
   .portfolio-item {
     width: 350px;
   }
+  .card{
+    max-height: 480px;
+  }
   @keyframes auto-scroll {
     100% {
       transform: translateX(calc(-350px * 5 - 20px * 5));
@@ -828,8 +832,17 @@ SOCIALS SECTION
   .card-header h3 {
     font-size: 2rem;
   }
+  .portfolio-item {
+    display: none;
+    width: 100%;
+    margin-right: 0;
+  }
+  .portfolio-item:nth-child(-n + 8) {
+    display: block;
+  }
   .card-price {
     font-size: 2.8rem;
+    height: auto;
   }
   .main-nav {
     display: flex;
@@ -841,9 +854,5 @@ SOCIALS SECTION
   }
   .section-title {
     font-size: 3.2rem;
-  }
-  .portfolio-item {
-    width: 100%;
-    margin-right: 0;
   }
 }
